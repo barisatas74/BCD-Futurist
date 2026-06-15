@@ -1,0 +1,321 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #fbf4ec;
+  --color-cream-soft: #fff8f2;
+  --color-ink: #090609;
+  --color-ink-soft: #35242f;
+  --color-pink: #ff2f9b;
+  --color-fuchsia: #ff4fa3;
+  --color-violet: #8f4cf8;
+  --color-orange: #ff7a1a;
+  --color-amber: #ffeb70;
+
+  --font-sans: var(--font-manrope), "Manrope", Arial, Helvetica, sans-serif;
+  --font-display: var(--font-archivo), "Archivo Black", sans-serif;
+  --font-body: var(--font-manrope), "Manrope", Arial, Helvetica, sans-serif;
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-blob: blob 14s ease-in-out infinite alternate;
+  --animate-blob-slow: blob 20s ease-in-out infinite alternate-reverse;
+  --animate-spin-slow: spin 14s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes preloaderRise {
+  from {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, -8%) scale(1.12);
+  }
+  100% {
+    transform: translate(-5%, 6%) scale(0.94);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255, 235, 112, 0.24), transparent 24rem),
+    radial-gradient(circle at 92% 0%, rgba(255, 47, 155, 0.14), transparent 30rem),
+    var(--color-cream);
+  color: #090609;
+  font-family: "Manrope", var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-fuchsia);
+  color: #fff;
+}
+
+/* Gradient metin yardımcıları */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-orange) 0%,
+    var(--color-pink) 38%,
+    var(--color-fuchsia) 62%,
+    var(--color-violet) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.display,
+.hero-bcd-title {
+  font-family: "Archivo Black", var(--font-archivo), "Arial Black", sans-serif;
+  font-size: 4.15rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.76;
+}
+
+@media (min-width: 640px) {
+  .hero-bcd-title {
+    font-size: 6rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-bcd-title {
+    font-size: 7.4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-bcd-title {
+    font-size: 9.2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-bcd-title {
+    font-size: 10.6rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .hero-bcd-title {
+    font-size: 11.8rem;
+  }
+}
+
+.nav-text {
+  font-family: "Manrope", var(--font-manrope), Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.button-text {
+  font-family: "Manrope", var(--font-manrope), Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.small-bold {
+  font-family: "Manrope", var(--font-manrope), Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.side-copy {
+  font-family: "Manrope", var(--font-manrope), Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #090609;
+  background: #fff;
+  font-family: "Archivo Black", var(--font-archivo), sans-serif;
+  font-size: 11.2px;
+  line-height: 1;
+  color: #090609;
+}
+
+.hero-long-line {
+  font-size: 0.62em;
+  line-height: 0.9;
+}
+
+.hero-title-mask {
+  display: block;
+  overflow: hidden;
+  clip-path: inset(0 0 -0.28em 0);
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
+
+.hero-title-mask-tail {
+  padding-bottom: 0.3em;
+  margin-bottom: -0.3em;
+  clip-path: inset(0 0 -0.42em 0);
+}
+
+.hero-ink-field {
+  position: absolute;
+  inset: -22% -22% -10% 36%;
+  z-index: -2;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255, 47, 155, 0.92) 0 18%, rgba(255, 47, 155, 0.68) 31%, transparent 61%),
+    radial-gradient(circle at 35% 40%, rgba(255, 235, 112, 0.42), transparent 24%),
+    radial-gradient(circle at 18% 47%, rgba(70, 207, 255, 0.68), transparent 24%),
+    radial-gradient(circle at 65% 70%, rgba(143, 76, 248, 0.45), transparent 30%),
+    radial-gradient(circle at 72% 30%, rgba(255, 122, 26, 0.28), transparent 28%);
+  filter: blur(28px) saturate(126%);
+  opacity: 0.92;
+  transform-origin: center;
+  animation: liquid-drift 12s ease-in-out infinite alternate;
+}
+
+.hero-ink-field::after {
+  position: absolute;
+  inset: 6%;
+  content: "";
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 60% 45%, rgba(255, 255, 255, 0.32), transparent 26%),
+    radial-gradient(circle at 45% 72%, rgba(255, 47, 155, 0.42), transparent 32%);
+  mix-blend-mode: screen;
+  animation: liquid-pulse 8s ease-in-out infinite;
+}
+
+.hero-ink-field-small {
+  inset: -16rem -12rem auto auto;
+  height: 42rem;
+  width: 42rem;
+  opacity: 0.72;
+}
+
+.hero-paper-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(circle at 8% 52%, rgba(255, 255, 255, 0.98), transparent 38rem),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.02));
+}
+
+.grain-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(9, 6, 9, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(9, 6, 9, 0.026) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+@keyframes liquid-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(-3rem, 2rem, 0) rotate(7deg) scale(1.06);
+  }
+  100% {
+    transform: translate3d(2rem, -1rem, 0) rotate(-5deg) scale(1.03);
+  }
+}
+
+@keyframes liquid-pulse {
+  0%,
+  100% {
+    opacity: 0.74;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* Hareket azaltma tercihi: tüm dekoratif animasyonları kapat */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-long-line {
+    font-size: 0.54em;
+  }
+
+  .hero-ink-field {
+    inset: 4rem -65% 18% 16%;
+    filter: blur(24px) saturate(118%);
+    opacity: 0.78;
+  }
+}
