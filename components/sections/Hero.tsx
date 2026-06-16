@@ -144,10 +144,11 @@ export default function Hero() {
         </div>
 
         <motion.div
-          style={{
-            opacity: bottomRevealOpacity,
-            y: reducedMotion ? 0 : bottomRevealY,
-          }}
+          style={
+            parallaxOff
+              ? undefined
+              : { opacity: bottomRevealOpacity, y: bottomRevealY }
+          }
           className="grid gap-8 pb-2 lg:grid-cols-[1fr_0.9fr] lg:items-end"
         >
           <div className="nav-text flex flex-wrap items-center gap-4 text-ink">

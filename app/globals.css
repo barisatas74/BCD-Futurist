@@ -309,8 +309,23 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* Mobilde başlık okunabilir olsun: küçült, satırları üst üste bindirme,
+     maske kırpmalarını kapat */
+  .hero-bcd-title {
+    font-size: clamp(1.85rem, 8.5vw, 2.6rem);
+    line-height: 1.05;
+  }
+
   .hero-long-line {
-    font-size: 0.54em;
+    font-size: 0.82em;
+    line-height: 1;
+  }
+
+  .hero-title-mask,
+  .hero-title-mask-tail {
+    clip-path: none;
+    padding-bottom: 0.08em;
+    margin-bottom: 0;
   }
 
   .hero-ink-field {
