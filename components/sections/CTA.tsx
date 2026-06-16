@@ -40,10 +40,21 @@ export default function CTA() {
   return (
     <section
       id="iletisim"
-      className="mx-auto flex min-h-svh max-w-6xl items-center px-4 py-20 sm:px-6"
+      className="relative flex min-h-svh items-center overflow-hidden bg-ink px-4 py-20 text-cream sm:px-6"
     >
-      <Reveal className="w-full">
-        <div className="relative flex min-h-[80svh] w-full flex-col justify-center overflow-hidden rounded-[2.25rem] bg-[#090609] px-6 py-14 text-white shadow-[0_30px_120px_rgba(255,47,155,0.28)] sm:rounded-[3rem] sm:px-16 sm:py-20">
+      {/* Tam ekran koyu arka plan — Neden Biz bölümüyle aynı his */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[radial-gradient(circle_at_15%_12%,rgba(143,76,248,0.2),transparent_42%),radial-gradient(circle_at_85%_88%,rgba(255,47,155,0.2),transparent_44%)]"
+      />
+      <div
+        aria-hidden
+        className="animate-blob-slow absolute -left-[8%] top-[12%] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle_at_50%_50%,#ff2f9b_0%,#8f4cf8_55%,transparent_75%)] opacity-20 blur-3xl"
+      />
+
+      <div className="relative mx-auto w-full max-w-6xl">
+        <Reveal className="w-full">
+          <div className="relative flex min-h-[80svh] w-full flex-col justify-center overflow-hidden rounded-[2.25rem] border border-white/[0.07] bg-[#0c0810] px-6 py-14 text-white shadow-[0_30px_120px_rgba(255,47,155,0.3)] sm:rounded-[3rem] sm:px-16 sm:py-20">
           <div
             aria-hidden
             className="absolute inset-0 bg-[radial-gradient(circle_at_76%_22%,rgba(255,47,155,0.62),transparent_32%),radial-gradient(circle_at_30%_80%,rgba(255,176,46,0.24),transparent_28%),radial-gradient(circle_at_58%_54%,rgba(143,76,248,0.38),transparent_34%)]"
@@ -141,7 +152,8 @@ export default function CTA() {
             </div>
           </div>
         </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }
