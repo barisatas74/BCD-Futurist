@@ -17,6 +17,7 @@ export default function CTA() {
       href: whatsappHref,
       external: true,
       accent: true,
+      breakAll: false,
     },
     {
       label: "E-posta",
@@ -24,6 +25,7 @@ export default function CTA() {
       href: `mailto:${contact.email}`,
       external: false,
       accent: false,
+      breakAll: true,
     },
     {
       label: "Telefon",
@@ -31,13 +33,17 @@ export default function CTA() {
       href: telHref,
       external: false,
       accent: false,
+      breakAll: false,
     },
   ];
 
   return (
-    <section id="iletisim" className="mx-auto max-w-6xl px-6 py-24 sm:py-36">
-      <Reveal>
-        <div className="relative overflow-hidden rounded-[2.25rem] bg-[#090609] px-6 py-16 text-white shadow-[0_30px_120px_rgba(255,47,155,0.28)] sm:rounded-[3rem] sm:px-16 sm:py-24">
+    <section
+      id="iletisim"
+      className="mx-auto flex min-h-svh max-w-6xl items-center px-4 py-20 sm:px-6"
+    >
+      <Reveal className="w-full">
+        <div className="relative flex min-h-[80svh] w-full flex-col justify-center overflow-hidden rounded-[2.25rem] bg-[#090609] px-6 py-14 text-white shadow-[0_30px_120px_rgba(255,47,155,0.28)] sm:rounded-[3rem] sm:px-16 sm:py-20">
           <div
             aria-hidden
             className="absolute inset-0 bg-[radial-gradient(circle_at_76%_22%,rgba(255,47,155,0.62),transparent_32%),radial-gradient(circle_at_30%_80%,rgba(255,176,46,0.24),transparent_28%),radial-gradient(circle_at_58%_54%,rgba(143,76,248,0.38),transparent_34%)]"
@@ -76,22 +82,28 @@ export default function CTA() {
                   href={ch.href}
                   target={ch.external ? "_blank" : undefined}
                   rel={ch.external ? "noopener noreferrer" : undefined}
-                  className={`group flex flex-col gap-1 rounded-2xl border p-5 text-left transition-all duration-300 hover:-translate-y-1 ${
+                  className={`group flex min-w-0 flex-col gap-1 rounded-2xl border p-5 text-left transition-all duration-300 hover:-translate-y-1 ${
                     ch.accent
                       ? "border-transparent bg-[#ff2f9b] hover:bg-[#ff168b]"
                       : "border-white/15 bg-white/[0.04] hover:border-white/35 hover:bg-white/[0.08]"
                   }`}
                 >
-                  <span className="flex items-center justify-between text-xs font-black uppercase tracking-[0.18em] text-white/70">
+                  <span className="flex items-center justify-between gap-2 text-xs font-black uppercase tracking-[0.18em] text-white/70">
                     {ch.label}
                     <span
                       aria-hidden
-                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     >
                       ↗
                     </span>
                   </span>
-                  <span className="font-semibold text-white">{ch.value}</span>
+                  <span
+                    className={`text-sm font-semibold text-white sm:text-[0.95rem] ${
+                      ch.breakAll ? "break-all" : "break-words"
+                    }`}
+                  >
+                    {ch.value}
+                  </span>
                 </a>
               ))}
             </div>
