@@ -7,11 +7,11 @@ export default function Services() {
   return (
     <section
       id="hizmetler"
-      className="bg-[radial-gradient(circle_at_88%_8%,rgba(255,47,155,0.28),transparent_28rem),radial-gradient(circle_at_12%_78%,rgba(255,235,112,0.22),transparent_24rem),linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,210,239,0.34))] py-28 sm:py-36"
+      className="bg-[radial-gradient(circle_at_88%_8%,rgba(255,47,155,0.28),transparent_28rem),radial-gradient(circle_at_12%_78%,rgba(255,235,112,0.22),transparent_24rem),linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,210,239,0.34))] py-16 sm:py-36"
     >
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
             <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
               Neler <span className="text-gradient">Yapıyoruz?</span>
             </h2>

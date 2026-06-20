@@ -333,4 +333,10 @@ body {
     filter: blur(24px) saturate(118%);
     opacity: 0.78;
   }
+
+  /* Performans: mobilde sürekli dönen blur'lu blob'ları durdur (jank'i keser) */
+  .animate-blob,
+  .animate-blob-slow {
+    animation: none !important;
+  }
 }

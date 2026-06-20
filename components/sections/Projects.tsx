@@ -116,10 +116,10 @@ export default function Projects() {
   return (
     <section
       id="projeler"
-      className="mx-auto max-w-6xl px-6 py-28 sm:py-36"
+      className="mx-auto max-w-6xl px-6 py-16 sm:py-36"
     >
       <Reveal>
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
           <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
             Seçili Projeler{" "}
             <sup className="text-gradient text-xl font-bold sm:text-2xl">

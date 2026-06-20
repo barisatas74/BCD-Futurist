@@ -37,7 +37,7 @@ export default function WhyUs() {
   return (
     <section
       id="neden-biz"
-      className="relative flex min-h-svh items-center overflow-hidden bg-ink py-28 text-cream sm:py-36"
+      className="relative flex min-h-svh items-center overflow-hidden bg-ink py-20 text-cream sm:py-36"
     >
       <div
         aria-hidden
@@ -48,7 +48,7 @@ export default function WhyUs() {
         className="animate-blob absolute -left-[10%] bottom-[5%] h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle_at_50%_50%,#ffeb70_0%,#ff2f9b_55%,transparent_78%)] opacity-35 blur-3xl"
       />
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-6 lg:grid-cols-2">
+      <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-2 lg:gap-16">
         <div>
           <Reveal>
             <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
@@ -61,7 +61,7 @@ export default function WhyUs() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-8">
+          <div className="mt-10 grid grid-cols-2 gap-6 sm:gap-8">
             {STATS.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.08}>
                 <div>

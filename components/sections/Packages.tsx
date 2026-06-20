@@ -5,9 +5,9 @@ import { packages } from "@/lib/site-data";
 
 export default function Packages() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+    <section className="mx-auto max-w-6xl px-6 py-16 sm:py-32">
       <Reveal>
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
           <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
             Proje <span className="text-gradient">Paketleri</span>
           </h2>

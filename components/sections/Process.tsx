@@ -142,8 +142,8 @@ export default function Process() {
   };
 
   return (
-    <section id="surec" className="overflow-hidden py-24 sm:py-32">
-      <div className="mx-auto mb-12 flex max-w-6xl flex-wrap items-end justify-between gap-6 px-6">
+    <section id="surec" className="overflow-hidden py-16 sm:py-32">
+      <div className="mx-auto mb-8 flex max-w-6xl flex-wrap items-end justify-between gap-6 px-6 sm:mb-12">
         <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
           Nasıl <span className="text-gradient">Çalışıyoruz?</span>
         </h2>
