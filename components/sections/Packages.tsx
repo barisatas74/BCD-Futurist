@@ -1,11 +1,12 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import { ArrowUpRight } from "@/components/Icons";
 import { packages } from "@/lib/site-data";
 
 export default function Packages() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16 sm:py-32">
+    <section id="paketler" className="mx-auto max-w-6xl px-6 py-16 sm:py-32">
       <Reveal>
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
           <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
@@ -34,17 +35,27 @@ export default function Packages() {
                 </p>
               </div>
 
-              <ul className="mt-8 space-y-3">
-                {item.points.map((point) => (
-                  <li key={point} className="flex items-center gap-3 text-sm">
-                    <span
-                      aria-hidden
-                      className="h-2 w-2 shrink-0 rounded-full bg-gradient-to-r from-orange to-fuchsia transition-transform duration-300 group-hover:scale-150"
-                    />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <ul className="mt-8 space-y-3">
+                  {item.points.map((point) => (
+                    <li key={point} className="flex items-center gap-3 text-sm">
+                      <span
+                        aria-hidden
+                        className="h-2 w-2 shrink-0 rounded-full bg-gradient-to-r from-orange to-fuchsia transition-transform duration-300 group-hover:scale-150"
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#iletisim"
+                  className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-black text-cream transition-colors duration-300 group-hover:bg-fuchsia"
+                >
+                  Bu paketi seç
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
             </article>
           </Reveal>
         ))}

@@ -37,7 +37,11 @@ export default function SmoothScroll({
       if (lenis) {
         lenis.scrollTo(el, { offset: 0 });
       } else {
-        window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
+        // Sabit menü payı + her cihazda çalışan iki argümanlı scrollTo
+        // (eski iOS'ta {behavior} nesne formu sayıya çevrilip 0'a kayıyordu)
+        const top =
+          el.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo(0, Math.max(0, top));
       }
     };
     document.addEventListener("click", onClick);

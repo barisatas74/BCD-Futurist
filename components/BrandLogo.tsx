@@ -11,7 +11,7 @@ export default function BrandLogo({
   showYear = true,
   className = "",
   textClassName = "hidden sm:block text-xs",
-  markClassName = "h-11 w-11 border-2",
+  markClassName = "h-11 w-11",
 }: BrandLogoProps) {
   const isLight = theme === "light";
   const markColor = isLight
@@ -21,14 +21,14 @@ export default function BrandLogo({
 
   return (
     <span
-      className={`inline-flex items-center gap-4 ${className}`}
+      className={`inline-flex items-center gap-3.5 ${className}`}
       aria-label="Barış Creative Design"
     >
       <span
         aria-hidden
-        className={`grid shrink-0 place-items-center ${markClassName} ${markColor} font-display font-black`}
+        className={`grid shrink-0 place-items-center rounded-[3px] border-[2.5px] ${markClassName} ${markColor} font-display`}
       >
-        <span className="flex flex-col items-center gap-[1px] text-[0.78rem] leading-[0.78]">
+        <span className="flex flex-col items-center leading-[0.82] tracking-tight text-[0.86rem] font-black">
           <span>B</span>
           <span>C</span>
           <span>D</span>

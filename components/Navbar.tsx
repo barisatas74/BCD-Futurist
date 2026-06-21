@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import {
-  AnimatePresence,
   motion,
   useReducedMotion,
   useScroll,
@@ -15,7 +14,7 @@ import { contact } from "@/lib/site-data";
 const navItems = [
   { label: "Projeler", href: "#projeler" },
   { label: "Hizmetler", href: "#hizmetler" },
-  { label: "Süreç", href: "#surec" },
+  { label: "Paketler", href: "#paketler" },
   { label: "Neden Biz?", href: "#neden-biz" },
   { label: "İletişim", href: "#iletisim" },
 ];
@@ -114,75 +113,56 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* Tam ekran mobil menü */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-[#090609] text-cream xl:hidden"
-          >
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(255,47,155,0.42),transparent_46%),radial-gradient(circle_at_12%_88%,rgba(143,76,248,0.32),transparent_48%)]"
-            />
-            <div className="relative flex h-full flex-col px-6 pb-10 pt-28">
-              <ul className="flex flex-1 flex-col justify-center gap-1">
-                {navItems.map((item, i) => (
-                  <motion.li
-                    key={item.href}
-                    initial={
-                      shouldReduceMotion ? false : { opacity: 0, y: 24 }
-                    }
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.08 + i * 0.06, duration: 0.4 }}
+      {/* Tam ekran mobil menü — CSS tabanlı görünürlük (JS animasyonuna bağlı
+          değil; framer takılsa bile menü her zaman açılır ve tıklanır) */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#090609] text-cream xl:hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(255,47,155,0.42),transparent_46%),radial-gradient(circle_at_12%_88%,rgba(143,76,248,0.32),transparent_48%)]"
+          />
+          <div className="relative flex h-full flex-col px-6 pb-10 pt-28">
+            <ul className="flex flex-1 flex-col justify-center gap-1">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2 font-display text-[2.6rem] font-black leading-tight tracking-tight transition-colors duration-200 hover:text-[#ff2f9b]"
                   >
-                    <a
-                      href={item.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="block py-2 font-display text-[2.6rem] font-black leading-tight tracking-tight transition-colors duration-200 hover:text-[#ff2f9b]"
-                    >
-                      {item.label}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
-                className="relative flex flex-col gap-3"
+            <div className="relative flex flex-col gap-3">
+              <a
+                href="#iletisim"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center gap-3 rounded-full bg-[#ff2f9b] px-7 py-4 font-black text-white transition-colors hover:bg-[#ff168b]"
               >
-                <a
-                  href="#iletisim"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-3 rounded-full bg-[#ff2f9b] px-7 py-4 font-black text-white transition-colors hover:bg-[#ff168b]"
-                >
-                  Projeni Başlat <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <a
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-3 rounded-full border border-cream/25 px-7 py-4 font-black text-cream transition-colors hover:bg-cream/10"
-                >
-                  WhatsApp ile yaz <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="mt-1 text-center text-sm font-semibold text-cream/60 transition-colors hover:text-cream"
-                >
-                  {contact.email}
-                </a>
-              </motion.div>
+                Projeni Başlat <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center gap-3 rounded-full border border-cream/25 px-7 py-4 font-black text-cream transition-colors hover:bg-cream/10"
+              >
+                WhatsApp ile yaz <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="mt-1 text-center text-sm font-semibold text-cream/60 transition-colors hover:text-cream"
+              >
+                {contact.email}
+              </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </>
   );
 }

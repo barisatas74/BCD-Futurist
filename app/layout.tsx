@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: brand.compactName }],
   icons: {
-    icon: "/logo.png",
+    icon: "/bcd-logo.svg",
     apple: "/logo.png",
   },
   openGraph: {

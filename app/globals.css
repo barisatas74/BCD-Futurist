@@ -331,14 +331,16 @@ body {
   }
 
   .hero-ink-field {
-    inset: 4rem -65% 18% 16%;
-    filter: blur(24px) saturate(118%);
-    opacity: 0.78;
+    inset: 6rem -55% 30% 30%;
+    filter: blur(30px) saturate(115%);
+    opacity: 0.58;
+    animation: none;
   }
 
-  /* Performans: mobilde sürekli dönen blur'lu blob'ları durdur (jank'i keser) */
+  /* Performans: mobilde sürekli dönen / sürekli akan blur'lu efektleri durdur */
   .animate-blob,
-  .animate-blob-slow {
+  .animate-blob-slow,
+  .hero-ink-field::after {
     animation: none !important;
   }
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useIsMobile } from "@/lib/hooks";
 
 const LETTERS = ["B", "C", "D"];
 
@@ -11,18 +12,19 @@ const LETTERS = ["B", "C", "D"];
  */
 export default function Preloader() {
   const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const [leaving, setLeaving] = useState(false);
   const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    const hold = reducedMotion ? 200 : 1600;
+    const hold = reducedMotion ? 200 : isMobile ? 950 : 1600;
     const leaveTimer = setTimeout(() => setLeaving(true), hold);
     const removeTimer = setTimeout(() => setMounted(false), hold + 800);
     return () => {
       clearTimeout(leaveTimer);
       clearTimeout(removeTimer);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, isMobile]);
 
   if (!mounted) return null;
 

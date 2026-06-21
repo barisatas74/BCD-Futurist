@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
+import ContactForm from "@/components/ContactForm";
 import { ArrowUpRight } from "@/components/Icons";
 import { contact, socialLinks } from "@/lib/site-data";
 
@@ -86,8 +87,15 @@ export default function CTA() {
               anlat, 24 saat içinde dönüş yapalım.
             </p>
 
+            {/* İletişim formu — talepler buradan (Telegram'a bağlanacak) */}
+            <ContactForm />
+
+            <p className="mx-auto mt-12 max-w-3xl text-center text-xs font-black uppercase tracking-[0.25em] text-white/40">
+              ya da doğrudan
+            </p>
+
             {/* İletişim kanalları */}
-            <div className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-3">
+            <div className="mx-auto mt-5 grid max-w-3xl gap-3 sm:grid-cols-3">
               {channels.map((ch) => (
                 <a
                   key={ch.label}

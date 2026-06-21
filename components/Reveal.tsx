@@ -1,8 +1,15 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useIsMobile } from "@/lib/hooks";
+import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
+/**
+ * Hafif, kendi IntersectionObserver'ını kullanan giriş animasyonu.
+ * Framer'ın whileInView'i mobilde bazen hiç tetiklenmiyordu (içerik
+ * "yüklenmiyor" gibi görünüyordu). Burada CSS geçişi + güvenlik zaman
+ * aşımı var: gözlemci tetiklenmese bile içerik kısa süre sonra mutlaka
+ * görünür olur. Mobilde de performans için ucuzdur.
+ */
 export default function Reveal({
   children,
   delay = 0,
@@ -15,33 +22,60 @@ export default function Reveal({
   className?: string;
 }) {
   const reducedMotion = useReducedMotion();
-  const isMobile = useIsMobile();
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
 
-  // Mobilde: küçük hareket, hızlı süre, erken tetikleme → içerik "geç yüklenmiş" hissi vermez
-  const offset = reducedMotion ? 0 : isMobile ? Math.min(y, 16) : y;
-  const duration = isMobile ? 0.45 : 0.7;
-  const effectiveDelay = reducedMotion
-    ? 0
-    : isMobile
-      ? Math.min(delay, 0.12)
-      : delay;
+  useEffect(() => {
+    if (reducedMotion) {
+      setShown(true);
+      return;
+    }
+
+    const el = ref.current;
+    if (!el) return;
+
+    // Zaten görünürse hemen göster
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 1.1) {
+      setShown(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px" }
+    );
+    observer.observe(el);
+
+    // Güvenlik ağı: gözlemci herhangi bir nedenle tetiklenmezse içerik
+    // asla gizli kalmasın.
+    const fallback = window.setTimeout(() => setShown(true), 1400);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
+  }, [reducedMotion]);
 
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, y: offset }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{
-        once: true,
-        margin: isMobile ? "0px 0px 160px 0px" : "-80px",
-      }}
-      transition={{
-        duration,
-        delay: effectiveDelay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+      style={{
+        opacity: shown ? 1 : 0,
+        transform: shown ? "none" : `translateY(${y}px)`,
+        transition: reducedMotion
+          ? undefined
+          : `opacity 0.6s cubic-bezier(0.21,0.47,0.32,0.98) ${delay}s, transform 0.6s cubic-bezier(0.21,0.47,0.32,0.98) ${delay}s`,
+        willChange: shown ? "auto" : "opacity, transform",
       }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

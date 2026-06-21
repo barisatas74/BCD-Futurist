@@ -7,6 +7,7 @@ import { brand, contact, socialLinks } from "@/lib/site-data";
 const NAV = [
   { label: "Projeler", href: "#projeler" },
   { label: "Hizmetler", href: "#hizmetler" },
+  { label: "Paketler", href: "#paketler" },
   { label: "Süreç", href: "#surec" },
   { label: "Neden Biz?", href: "#neden-biz" },
   { label: "İletişim", href: "#iletisim" },
@@ -81,7 +82,7 @@ export default function Footer() {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-cream/10 pt-8 text-sm text-cream/50">
           <p>© 2026 {brand.name}. Tüm hakları saklıdır.</p>
-          <p>İstanbul’dan sevgilerle ✦</p>
+          <p>Yaratıcı dijital stüdyo ✦</p>
         </div>
       </div>
     </footer>

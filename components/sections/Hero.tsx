@@ -25,6 +25,10 @@ export default function Hero() {
   const reducedMotion = useReducedMotion();
   const isMobile = useIsMobile();
   const parallaxOff = reducedMotion || isMobile;
+  // Mobilde JS animasyonlarına bel bağlama: başlık ilk render'da görünür olsun
+  const slideOff = reducedMotion || isMobile;
+  // Mobilde preloader kısa; başlık hızlı gelsin ("yükleniyor" hissi olmasın)
+  const titleDelay = isMobile ? 0.3 : 1.82;
 
   const { scrollY, scrollYProgress } = useScroll({
     target: ref,
@@ -82,7 +86,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        className="relative mx-auto flex min-h-[calc(100svh-9rem)] w-full max-w-[92rem] flex-col justify-between"
+        className="relative mx-auto flex w-full max-w-[92rem] flex-col gap-10 lg:min-h-[calc(100svh-9rem)] lg:justify-between lg:gap-0"
         style={parallaxOff ? undefined : { y: contentY }}
       >
         <div className="flex flex-wrap items-start justify-between gap-5">
@@ -90,7 +94,7 @@ export default function Hero() {
             style={{
               animation: reducedMotion
                 ? undefined
-                : "fadeDown 0.6s ease-out 1.7s both",
+                : `fadeDown 0.6s ease-out ${titleDelay}s both`,
             }}
             className="small-bold max-w-sm text-ink"
           >
@@ -101,12 +105,12 @@ export default function Hero() {
             style={{
               animation: reducedMotion
                 ? undefined
-                : "fadeDown 0.6s ease-out 1.82s both",
+                : `fadeDown 0.6s ease-out ${titleDelay + 0.12}s both`,
             }}
             className="side-copy max-w-xs text-ink-soft"
           >
-            İstanbul çıkışlı, hızlı düşünen, renkli ve performans odaklı
-            yaratıcı dijital stüdyo.
+            Hızlı düşünen, renkli ve performans odaklı yaratıcı dijital
+            stüdyo.
           </p>
         </div>
 
@@ -126,13 +130,13 @@ export default function Hero() {
                   aria-hidden
                   className={`block ${line.className}`}
                   initial={
-                    reducedMotion
+                    slideOff
                       ? false
                       : { y: "110%", rotate: index % 2 ? 2 : -2 }
                   }
                   animate={{ y: 0, rotate: 0 }}
                   transition={{
-                    delay: 1.82 + index * 0.1,
+                    delay: titleDelay + index * 0.1,
                     duration: 0.78,
                     ease: [0.16, 1, 0.3, 1],
                   }}
