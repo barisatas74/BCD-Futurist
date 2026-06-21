@@ -43,7 +43,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mt-10 grid max-w-2xl gap-3 text-left"
+      className="grid w-full gap-3 text-left"
     >
       {/* Honeypot — ekranda gizli */}
       <input

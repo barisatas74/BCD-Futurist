@@ -1,7 +1,6 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
-import Magnetic from "@/components/Magnetic";
 import ContactForm from "@/components/ContactForm";
 import { ArrowUpRight } from "@/components/Icons";
 import { contact, socialLinks } from "@/lib/site-data";
@@ -54,57 +53,37 @@ export default function CTA() {
         className="animate-blob-slow absolute -left-[8%] top-[12%] h-[26rem] w-[26rem] rounded-full bg-[radial-gradient(circle_at_50%_50%,#ff2f9b_0%,#8f4cf8_55%,transparent_75%)] opacity-20 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl">
-        <Reveal className="w-full">
-          <div className="relative flex min-h-[80svh] w-full flex-col justify-center overflow-hidden rounded-[2.25rem] bg-[#0c0810] px-6 py-14 text-white shadow-[0_30px_120px_rgba(255,47,155,0.3)] sm:rounded-[3rem] sm:px-16 sm:py-20">
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-[radial-gradient(circle_at_76%_22%,rgba(255,47,155,0.62),transparent_32%),radial-gradient(circle_at_30%_80%,rgba(255,176,46,0.24),transparent_28%),radial-gradient(circle_at_58%_54%,rgba(143,76,248,0.38),transparent_34%)]"
-          />
-          <div
-            aria-hidden
-            className="animate-blob absolute -left-[10%] -top-[20%] h-[22rem] w-[22rem] rounded-full bg-white/15 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="animate-blob-slow absolute -bottom-[25%] -right-[8%] h-[26rem] w-[26rem] rounded-full bg-amber/30 blur-3xl"
-          />
-
-          <div className="relative">
-            <p className="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-white/70 sm:text-sm">
+      <div className="relative mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+        {/* Sol: başlık + iletişim kanalları */}
+        <Reveal>
+          <div>
+            <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-white/70 sm:text-sm">
               <span aria-hidden className="text-[#ff2f9b]">
                 ✦
               </span>
               Birlikte Çalışalım
             </p>
 
-            <h2 className="mx-auto mt-6 max-w-3xl text-center font-display text-[clamp(2.4rem,7vw,4.75rem)] font-extrabold leading-[0.98] tracking-tight">
+            <h2 className="mt-6 font-display text-[clamp(2.4rem,7vw,4.25rem)] font-extrabold leading-[0.98] tracking-tight">
               Aklında bir proje mi var?
             </h2>
 
-            <p className="mx-auto mt-6 max-w-xl text-center text-base text-white/80 sm:text-lg">
+            <p className="mt-6 max-w-md text-base text-white/80 sm:text-lg">
               Markanı sıradanlıktan çıkaracak ilk adımı birlikte atalım. Fikrini
               anlat, 24 saat içinde dönüş yapalım.
             </p>
 
-            {/* İletişim formu — talepler buradan (Telegram'a bağlanacak) */}
-            <ContactForm />
-
-            <p className="mx-auto mt-12 max-w-3xl text-center text-xs font-black uppercase tracking-[0.25em] text-white/40">
-              ya da doğrudan
-            </p>
-
             {/* İletişim kanalları */}
-            <div className="mx-auto mt-5 grid max-w-3xl gap-3 sm:grid-cols-3">
+            <div className="mt-9 grid max-w-md gap-3 sm:grid-cols-2">
               {channels.map((ch) => (
                 <a
                   key={ch.label}
                   href={ch.href}
                   target={ch.external ? "_blank" : undefined}
                   rel={ch.external ? "noopener noreferrer" : undefined}
-                  className={`group flex min-w-0 flex-col gap-1 rounded-2xl border p-5 text-left transition-all duration-300 hover:-translate-y-1 ${
+                  className={`group flex min-w-0 flex-col gap-1 rounded-2xl border p-4 text-left transition-all duration-300 hover:-translate-y-1 ${
                     ch.accent
-                      ? "border-transparent bg-[#ff2f9b] hover:bg-[#ff168b]"
+                      ? "border-transparent bg-[#ff2f9b] hover:bg-[#ff168b] sm:col-span-2"
                       : "border-white/15 bg-white/[0.04] hover:border-white/35 hover:bg-white/[0.08]"
                   }`}
                 >
@@ -113,7 +92,7 @@ export default function CTA() {
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
                   <span
-                    className={`text-sm font-semibold text-white sm:text-[0.95rem] ${
+                    className={`text-sm font-semibold text-white ${
                       ch.breakAll ? "break-all" : "break-words"
                     }`}
                   >
@@ -123,39 +102,34 @@ export default function CTA() {
               ))}
             </div>
 
-            {/* Birincil aksiyon + sosyal */}
-            <div className="relative mt-10 flex flex-col items-center gap-6">
-              <Magnetic strength={0.25}>
+            {/* Sosyal + yanıt süresi */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+              {socialLinks.map((s) => (
                 <a
-                  href={whatsappHref}
+                  key={s.label}
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-9 py-4 font-black text-ink shadow-2xl shadow-ink/20 transition-transform hover:scale-[1.04]"
+                  className="inline-flex items-center gap-1 font-semibold text-white/70 transition-colors hover:text-white"
                 >
-                  WhatsApp ile konuşalım <ArrowUpRight className="h-4 w-4" />
+                  {s.label} <ArrowUpRight className="h-3.5 w-3.5" />
                 </a>
-              </Magnetic>
-
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-                {socialLinks.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-semibold text-white/70 transition-colors hover:text-white"
-                  >
-                    {s.label} <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
-                ))}
-              </div>
-
-              <p className="text-xs uppercase tracking-[0.25em] text-white/40">
-                Ortalama yanıt süresi · 24 saat
-              </p>
+              ))}
+              <span className="text-xs uppercase tracking-[0.25em] text-white/40">
+                Yanıt süresi · 24 saat
+              </span>
             </div>
           </div>
-        </div>
+        </Reveal>
+
+        {/* Sağ: iletişim formu */}
+        <Reveal delay={0.08}>
+          <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm sm:p-8">
+            <p className="mb-5 text-sm font-black uppercase tracking-[0.2em] text-white/60">
+              Proje talebini yaz
+            </p>
+            <ContactForm />
+          </div>
         </Reveal>
       </div>
     </section>
