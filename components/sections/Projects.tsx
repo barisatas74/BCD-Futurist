@@ -73,17 +73,17 @@ function ProjectCard({ project }: { project: Project }) {
           <motion.span
             aria-hidden
             style={reducedMotion ? undefined : { y: initialY }}
-            className="absolute -bottom-[12%] -right-[4%] select-none font-display text-[14rem] font-extrabold leading-none text-white/15 transition-transform duration-700 group-hover:-translate-y-4 sm:text-[18rem]"
+            className="absolute -bottom-[12%] -right-[4%] select-none font-display text-[7rem] font-extrabold leading-none text-white/15 transition-transform duration-700 group-hover:-translate-y-4 sm:text-[18rem]"
           >
             {project.initial}
           </motion.span>
           <span
             aria-hidden
-            className="absolute left-[8%] top-[12%] h-24 w-24 rounded-full bg-white/20 blur-2xl"
+            className="absolute left-[8%] top-[12%] h-16 w-16 rounded-full bg-white/20 blur-2xl sm:h-24 sm:w-24"
           />
         </div>
 
-        <div className="absolute left-5 top-5 rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-md">
+        <div className="absolute left-3 top-3 rounded-full bg-white/15 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-widest text-white backdrop-blur-md sm:left-5 sm:top-5 sm:px-4 sm:py-1.5 sm:text-xs">
           {project.year}
         </div>
 
@@ -95,16 +95,18 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      <div className="mt-5 flex items-baseline justify-between gap-4 px-1">
-        <div>
-          <h3 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+      <div className="mt-3 flex items-baseline justify-between gap-2 px-0.5 sm:mt-5 sm:gap-4 sm:px-1">
+        <div className="min-w-0">
+          <h3 className="truncate font-display text-base font-bold tracking-tight sm:text-3xl">
             {project.title}
           </h3>
-          <p className="mt-1 text-ink-soft">{project.category}</p>
+          <p className="mt-0.5 truncate text-xs text-ink-soft sm:mt-1 sm:text-base">
+            {project.category}
+          </p>
         </div>
         <span
           aria-hidden
-          className={`text-2xl ${project.accent} transition-transform duration-500 group-hover:rotate-45`}
+          className={`text-lg ${project.accent} transition-transform duration-500 group-hover:rotate-45 sm:text-2xl`}
         >
           ✦
         </span>
@@ -134,12 +136,12 @@ export default function Projects() {
         </div>
       </Reveal>
 
-      <div className="grid gap-10 sm:gap-14 lg:grid-cols-2">
+      <div className="grid grid-cols-2 gap-4 sm:gap-14">
         {PROJECTS.map((project, i) => (
           <Reveal
             key={project.title}
             delay={0.1}
-            className={i % 2 === 1 ? "lg:mt-24" : ""}
+            className={i % 2 === 1 ? "mt-8 sm:mt-24" : ""}
           >
             <ProjectCard project={project} />
           </Reveal>

@@ -77,6 +77,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* iOS overscroll'da alttaki koyu footer ile uyumlu olsun (krem beyazlık görünmesin) */
+  background-color: #090609;
 }
 
 body {
