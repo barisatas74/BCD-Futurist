@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
+import { ArrowUpRight } from "@/components/Icons";
 import { contact, socialLinks } from "@/lib/site-data";
 
 export default function CTA() {
@@ -101,12 +102,7 @@ export default function CTA() {
                 >
                   <span className="flex items-center justify-between gap-2 text-xs font-black uppercase tracking-[0.18em] text-white/70">
                     {ch.label}
-                    <span
-                      aria-hidden
-                      className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    >
-                      ↗
-                    </span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
                   <span
                     className={`text-sm font-semibold text-white sm:text-[0.95rem] ${
@@ -128,7 +124,7 @@ export default function CTA() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-9 py-4 font-black text-ink shadow-2xl shadow-ink/20 transition-transform hover:scale-[1.04]"
                 >
-                  WhatsApp ile konuşalım <span aria-hidden>↗</span>
+                  WhatsApp ile konuşalım <ArrowUpRight className="h-4 w-4" />
                 </a>
               </Magnetic>
 
@@ -139,9 +135,9 @@ export default function CTA() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-white/70 transition-colors hover:text-white"
+                    className="inline-flex items-center gap-1 font-semibold text-white/70 transition-colors hover:text-white"
                   >
-                    {s.label} ↗
+                    {s.label} <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
                 ))}
               </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import BrandLogo from "@/components/BrandLogo";
+import { ArrowUpRight } from "@/components/Icons";
 import { brand, contact, socialLinks } from "@/lib/site-data";
 
 const NAV = [
@@ -61,9 +62,9 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-cream/75 transition-colors hover:text-cream"
+                    className="inline-flex items-center gap-1 text-cream/75 transition-colors hover:text-cream"
                   >
-                    {item.label} ↗
+                    {item.label} <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
                 </li>
               ))}

@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import BrandLogo from "@/components/BrandLogo";
+import { ArrowUpRight } from "@/components/Icons";
 import { contact } from "@/lib/site-data";
 
 const navItems = [
@@ -160,7 +161,7 @@ export default function Navbar() {
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-center gap-3 rounded-full bg-[#ff2f9b] px-7 py-4 font-black text-white transition-colors hover:bg-[#ff168b]"
                 >
-                  Projeni Başlat <span aria-hidden>↗</span>
+                  Projeni Başlat <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a
                   href={whatsappHref}
@@ -169,7 +170,7 @@ export default function Navbar() {
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-center gap-3 rounded-full border border-cream/25 px-7 py-4 font-black text-cream transition-colors hover:bg-cream/10"
                 >
-                  WhatsApp ile yaz <span aria-hidden>↗</span>
+                  WhatsApp ile yaz <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a
                   href={`mailto:${contact.email}`}
@@ -233,7 +234,7 @@ function MagneticButton({
     >
       <span>{children}</span>
       <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#090609] transition group-hover:rotate-45">
-        ↗
+        <ArrowUpRight className="h-4 w-4" />
       </span>
     </motion.a>
   );

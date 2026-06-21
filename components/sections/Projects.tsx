@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import Reveal from "@/components/Reveal";
+import { ArrowUpRight } from "@/components/Icons";
 
 type Project = {
   title: string;
@@ -88,9 +89,9 @@ function ProjectCard({ project }: { project: Project }) {
 
         <div
           aria-hidden
-          className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 translate-y-3"
+          className="absolute bottom-5 right-5 flex h-12 w-12 translate-y-3 items-center justify-center rounded-full bg-white text-ink opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
         >
-          ↗
+          <ArrowUpRight className="h-5 w-5" />
         </div>
       </div>
 

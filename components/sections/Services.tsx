@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import { ArrowRight } from "@/components/Icons";
 import { services } from "@/lib/site-data";
 
 export default function Services() {
@@ -44,9 +45,9 @@ export default function Services() {
                 </div>
                 <span
                   aria-hidden
-                  className="hidden text-3xl text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-ink sm:block"
+                  className="hidden text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-ink sm:block"
                 >
-                  →
+                  <ArrowRight className="h-7 w-7" />
                 </span>
               </div>
             </Reveal>

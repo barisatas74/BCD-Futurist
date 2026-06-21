@@ -8,6 +8,7 @@ import {
   useReducedMotion,
   useTransform,
 } from "framer-motion";
+import { ArrowsLeftRight } from "@/components/Icons";
 
 type Step = {
   no: string;
@@ -148,9 +149,7 @@ export default function Process() {
           Nasıl <span className="text-gradient">Çalışıyoruz?</span>
         </h2>
         <p className="flex items-center gap-2 text-sm font-medium text-ink-soft">
-          <span aria-hidden className="text-lg">
-            ↔
-          </span>
+          <ArrowsLeftRight className="h-5 w-5 text-fuchsia" />
           Kartları tutup sürükleyin
         </p>
       </div>

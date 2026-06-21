@@ -10,6 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import Magnetic from "@/components/Magnetic";
+import { ArrowUpRight } from "@/components/Icons";
 import { useIsMobile } from "@/lib/hooks";
 
 const HERO_LINES = [
@@ -185,7 +186,7 @@ export default function Hero() {
                     aria-hidden
                     className="relative grid h-8 w-8 place-items-center rounded-full bg-white text-ink transition-transform duration-300 group-hover:rotate-45"
                   >
-                    ↗
+                    <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </a>
               </Magnetic>
@@ -199,7 +200,7 @@ export default function Hero() {
                     aria-hidden
                     className="grid h-8 w-8 place-items-center rounded-full bg-white text-ink transition-transform duration-300 group-hover:rotate-45"
                   >
-                    ↗
+                    <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </a>
               </Magnetic>
