@@ -31,10 +31,6 @@ export const metadata: Metadata = {
     "BarışCreativeDesign",
   ],
   authors: [{ name: brand.compactName }],
-  icons: {
-    icon: "/logo-bcd.png",
-    apple: "/logo-bcd.png",
-  },
   openGraph: {
     type: "website",
     locale: "tr_TR",
