@@ -14,9 +14,6 @@ export default function BrandLogo({
   markClassName = "h-11 w-11",
 }: BrandLogoProps) {
   const isLight = theme === "light";
-  const markColor = isLight
-    ? "border-cream bg-cream text-ink"
-    : "border-ink bg-white text-ink";
   const textColor = isLight ? "text-cream" : "text-ink";
 
   return (
@@ -24,16 +21,12 @@ export default function BrandLogo({
       className={`inline-flex items-center gap-3.5 ${className}`}
       aria-label="Barış Creative Design"
     >
-      <span
+      <img
+        src="/logo-bcd.png"
+        alt="BCD"
         aria-hidden
-        className={`grid shrink-0 place-items-center rounded-[3px] border-[2.5px] ${markClassName} ${markColor} font-display`}
-      >
-        <span className="flex flex-col items-center leading-[0.82] tracking-tight text-[0.86rem] font-black">
-          <span>B</span>
-          <span>C</span>
-          <span>D</span>
-        </span>
-      </span>
+        className={`shrink-0 rounded-[7px] object-cover ${markClassName}`}
+      />
       <span
         className={`${textClassName} font-black uppercase tracking-[0.02em] ${textColor}`}
       >

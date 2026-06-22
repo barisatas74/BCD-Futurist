@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: brand.compactName }],
   icons: {
-    icon: "/bcd-logo.svg",
-    apple: "/logo.png",
+    icon: "/logo-bcd.png",
+    apple: "/logo-bcd.png",
   },
   openGraph: {
     type: "website",
