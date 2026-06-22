@@ -330,16 +330,32 @@ body {
     margin-bottom: 0;
   }
 
+  /* Minimalist mobil: hero'daki renkli ışık sahnesini gizle, pembe vurguyu
+     hafif bir köşe ışığına indir → "Seçili Projeler" gibi sade his */
+  .hero-aurora {
+    display: none;
+  }
+
   .hero-ink-field {
-    inset: 6rem -55% 30% 30%;
-    filter: blur(30px) saturate(115%);
-    opacity: 0.58;
+    inset: 2rem -70% auto 45%;
+    height: 26rem;
+    filter: blur(34px) saturate(110%);
+    opacity: 0.34;
     animation: none;
   }
 
-  /* Performans: mobilde sürekli dönen / sürekli akan blur'lu efektleri durdur */
+  /* Renkli radial arka planlı bölümler mobilde sade krem zemine düşsün */
+  .mobile-flat {
+    background: transparent !important;
+  }
+
+  /* Minimalist + performans: mobilde ağır blur'lu dekoratif orb'ları kaldır
+     (koyu bölümlerde ince radial katman kalır, görsel gürültü gider) */
   .animate-blob,
-  .animate-blob-slow,
+  .animate-blob-slow {
+    display: none !important;
+  }
+
   .hero-ink-field::after {
     animation: none !important;
   }

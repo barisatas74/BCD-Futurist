@@ -69,10 +69,10 @@ export default function Hero() {
       <div aria-hidden className="hero-paper-glow" />
       <div aria-hidden className="grain-layer" />
 
-      {/* Eski BCD Futurist paletindeki canlı ışık sahnesi */}
+      {/* Eski BCD Futurist paletindeki canlı ışık sahnesi (mobilde gizli) */}
       <motion.div
         aria-hidden
-        className="absolute inset-0 -z-10"
+        className="hero-aurora absolute inset-0 -z-10"
         style={parallaxOff ? undefined : { y: auroraY }}
       >
         <motion.div
@@ -156,7 +156,7 @@ export default function Hero() {
           }
           className="grid gap-8 pb-2 lg:grid-cols-[1fr_0.9fr] lg:items-end"
         >
-          <div className="nav-text flex flex-wrap items-center gap-4 text-ink">
+          <div className="nav-text hidden flex-wrap items-center gap-4 text-ink sm:flex">
             {["Awwwards tarzı enerji", "Premium arayüz", "Akıcı hareket"].map(
               (item) => (
                 <span

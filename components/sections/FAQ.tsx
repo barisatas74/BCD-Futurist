@@ -5,7 +5,7 @@ import { faqs } from "@/lib/site-data";
 
 export default function FAQ() {
   return (
-    <section className="bg-[radial-gradient(circle_at_15%_20%,rgba(70,207,255,0.18),transparent_24rem),radial-gradient(circle_at_88%_35%,rgba(255,47,155,0.24),transparent_28rem),linear-gradient(180deg,rgba(255,248,242,0.86),rgba(255,210,239,0.32))] py-16 sm:py-32">
+    <section className="mobile-flat bg-[radial-gradient(circle_at_15%_20%,rgba(70,207,255,0.18),transparent_24rem),radial-gradient(circle_at_88%_35%,rgba(255,47,155,0.24),transparent_28rem),linear-gradient(180deg,rgba(255,248,242,0.86),rgba(255,210,239,0.32))] py-16 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
           <div className="mb-8 flex flex-wrap items-end justify-between gap-6 sm:mb-12">
