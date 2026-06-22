@@ -48,13 +48,15 @@ export default function Reveal({
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -8% 0px" }
+      // Pozitif alt pay: öğe görünüme girmeden ~%18 önce tetiklenir →
+      // aşağı kaydırınca içerik "geç geliyor / görünmüyor" hissi vermez.
+      { rootMargin: "0px 0px 18% 0px" }
     );
     observer.observe(el);
 
     // Güvenlik ağı: gözlemci herhangi bir nedenle tetiklenmezse içerik
     // asla gizli kalmasın.
-    const fallback = window.setTimeout(() => setShown(true), 1400);
+    const fallback = window.setTimeout(() => setShown(true), 1000);
 
     return () => {
       observer.disconnect();

@@ -11,6 +11,7 @@ import {
   useVelocity,
   useReducedMotion,
 } from "framer-motion";
+import { useIsMobile } from "@/lib/hooks";
 
 function wrap(min: number, max: number, value: number) {
   const range = max - min;
@@ -23,6 +24,37 @@ function wrap(min: number, max: number, value: number) {
  * Aşağı kaydırınca hızlanır, yukarı kaydırınca yön değiştirir.
  */
 export default function VelocityMarquee({
+  children,
+  baseVelocity = 3,
+  className,
+}: {
+  children: React.ReactNode;
+  baseVelocity?: number;
+  className?: string;
+}) {
+  const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+
+  // Mobilde: scroll-velocity + sürekli rAF döngüsü pahalı → ucuz CSS animasyonu
+  if (isMobile) {
+    return (
+      <div className="flex flex-nowrap overflow-hidden whitespace-nowrap">
+        <div
+          className={`flex flex-nowrap whitespace-nowrap ${
+            reducedMotion ? "" : "animate-marquee"
+          } ${className ?? ""}`}
+        >
+          <span className="block">{children}</span>
+          <span className="block">{children}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return <DesktopMarquee baseVelocity={baseVelocity} className={className}>{children}</DesktopMarquee>;
+}
+
+function DesktopMarquee({
   children,
   baseVelocity = 3,
   className,

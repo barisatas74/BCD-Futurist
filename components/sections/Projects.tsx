@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { ArrowUpRight } from "@/components/Icons";
+import { useIsMobile } from "@/lib/hooks";
 
 type Project = {
   title: string;
@@ -54,15 +55,37 @@ const PROJECTS: Project[] = [
   },
 ];
 
+// Sadece masaüstünde mount edilir → mobil hiç scroll dinleyicisi kurmaz
+function ParallaxInitial({
+  targetRef,
+  initial,
+}: {
+  targetRef: React.RefObject<HTMLAnchorElement | null>;
+  initial: string;
+}) {
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["12%", "-12%"]);
+  return (
+    <motion.span
+      aria-hidden
+      style={{ y }}
+      className="absolute -bottom-[12%] -right-[4%] select-none font-display text-[7rem] font-extrabold leading-none text-white/15 transition-transform duration-700 group-hover:-translate-y-4 sm:text-[18rem]"
+    >
+      {initial}
+    </motion.span>
+  );
+}
+
 function ProjectCard({ project }: { project: Project }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  // Kart kaydırılırken büyük harf hafifçe parallax kayar
-  const initialY = useTransform(scrollYProgress, [0, 1], ["12%", "-12%"]);
+  const isMobile = useIsMobile();
+  // Mobilde scroll'a bağlı parallax tamamen kapalı (her kart için ayrı
+  // dinleyici + getBoundingClientRect = kasma sebebi).
+  const enableParallax = !reducedMotion && !isMobile;
 
   return (
     <a href="#iletisim" className="group block" ref={ref}>
@@ -70,13 +93,16 @@ function ProjectCard({ project }: { project: Project }) {
         <div
           className={`absolute inset-0 bg-gradient-to-br ${project.gradient} transition-transform duration-700 ease-out group-hover:scale-[1.06]`}
         >
-          <motion.span
-            aria-hidden
-            style={reducedMotion ? undefined : { y: initialY }}
-            className="absolute -bottom-[12%] -right-[4%] select-none font-display text-[7rem] font-extrabold leading-none text-white/15 transition-transform duration-700 group-hover:-translate-y-4 sm:text-[18rem]"
-          >
-            {project.initial}
-          </motion.span>
+          {enableParallax ? (
+            <ParallaxInitial targetRef={ref} initial={project.initial} />
+          ) : (
+            <span
+              aria-hidden
+              className="absolute -bottom-[12%] -right-[4%] select-none font-display text-[7rem] font-extrabold leading-none text-white/15 sm:text-[18rem]"
+            >
+              {project.initial}
+            </span>
+          )}
           <span
             aria-hidden
             className="absolute left-[8%] top-[12%] h-16 w-16 rounded-full bg-white/20 blur-2xl sm:h-24 sm:w-24"

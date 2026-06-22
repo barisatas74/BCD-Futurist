@@ -10,6 +10,7 @@ import {
 import BrandLogo from "@/components/BrandLogo";
 import { ArrowUpRight } from "@/components/Icons";
 import { contact } from "@/lib/site-data";
+import { useIsMobile } from "@/lib/hooks";
 
 const navItems = [
   { label: "Projeler", href: "#projeler" },
@@ -25,6 +26,7 @@ const whatsappHref = `${contact.whatsapp}?text=${encodeURIComponent(
 
 export default function Navbar() {
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const { scrollY } = useScroll();
   const navScale = useTransform(scrollY, [0, 150], [1, 0.94]);
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +51,7 @@ export default function Navbar() {
     <>
       <motion.header
         className="fixed left-0 right-0 top-0 z-50 px-4 py-4 sm:px-6"
-        style={shouldReduceMotion ? undefined : { scale: navScale }}
+        style={shouldReduceMotion || isMobile ? undefined : { scale: navScale }}
       >
         <nav
           className={`mx-auto flex max-w-[92rem] items-center justify-between gap-4 rounded-full border px-4 transition-all duration-300 sm:px-5 ${

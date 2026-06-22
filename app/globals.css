@@ -343,4 +343,17 @@ body {
   .hero-ink-field::after {
     animation: none !important;
   }
+
+  /* Performans: backdrop-filter mobilde her scroll frame'inde yeniden
+     örnekleniyor (en büyük kasma sebeplerinden) → kapat. Kartların kendi
+     arka plan rengi olduğu için görünüm korunur. */
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Mobilde sabit marquee hızı */
+  .animate-marquee {
+    animation: marquee 24s linear infinite;
+  }
 }
