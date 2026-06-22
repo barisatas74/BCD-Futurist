@@ -15,7 +15,7 @@ export default function Marquee() {
   return (
     <section
       aria-hidden
-      className="overflow-hidden border-y border-ink/10 bg-ink py-10 text-cream sm:py-14"
+      className="hidden overflow-hidden border-y border-ink/10 bg-ink py-10 text-cream sm:block sm:py-14"
     >
       <VelocityMarquee baseVelocity={4}>
         {WORDS.map((word) => (
