@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isDbConfigured, ensureSchema, query } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -41,6 +42,19 @@ export async function POST(request: Request) {
       { ok: false, error: "missing_fields" },
       { status: 422 }
     );
+  }
+
+  // Veritabanına kaydet (admin panel gelen kutusu) — DB yoksa atlanır
+  if (isDbConfigured()) {
+    try {
+      await ensureSchema();
+      await query(
+        `INSERT INTO messages (name, email, phone, message) VALUES (?,?,?,?)`,
+        [name, email || null, phone || null, message]
+      );
+    } catch (err) {
+      console.error("[contact] DB kayıt hatası:", err);
+    }
   }
 
   const token = process.env.TELEGRAM_BOT_TOKEN;

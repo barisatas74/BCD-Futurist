@@ -15,6 +15,8 @@ import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
 import Footer from "@/components/sections/Footer";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <SmoothScroll>
