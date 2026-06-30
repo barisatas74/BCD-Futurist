@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import SubPageHeader from "@/components/SubPageHeader";
 import Footer from "@/components/sections/Footer";
-import ProjectsGrid, { type CardData } from "@/components/sections/ProjectsGrid";
+import ProjectsExplorer from "@/components/ProjectsExplorer";
+import { type CardData } from "@/components/sections/ProjectsGrid";
 import { getAllProjects } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -39,7 +40,7 @@ export default async function ProjelerPage() {
         </div>
 
         {cards.length ? (
-          <ProjectsGrid projects={cards} />
+          <ProjectsExplorer projects={cards} />
         ) : (
           <p className="text-ink-soft">Henüz proje eklenmedi.</p>
         )}

@@ -47,8 +47,8 @@ export async function POST(request: Request) {
 
   const res = (await query(
     `INSERT INTO projects
-      (slug, title, category, year, description, body, gradient, accent, initial, cover_image_id, featured, status, sort_order)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      (slug, title, category, year, description, body, gradient, accent, initial, cover_image_id, live_url, client, tags, results, featured, status, sort_order)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
     [
       slug,
       title,
@@ -60,11 +60,26 @@ export async function POST(request: Request) {
       body.accent ?? "text-pink",
       body.initial ?? title.slice(0, 1).toUpperCase(),
       body.cover_image_id ?? null,
+      body.live_url ?? null,
+      body.client ?? null,
+      body.tags ?? null,
+      body.results ?? null,
       body.featured ? 1 : 0,
       body.status ?? "published",
       Number(body.sort_order) || 0,
     ]
   )) as unknown as ResultSetHeader;
+
+  // Yüklenen galeri görsellerini bu projeye bağla
+  if (Array.isArray(body.image_ids) && body.image_ids.length) {
+    const ids = body.image_ids.map((n: unknown) => Number(n)).filter(Boolean);
+    for (const imgId of ids) {
+      await query(`UPDATE images SET project_id=? WHERE id=?`, [
+        res.insertId,
+        imgId,
+      ]);
+    }
+  }
 
   return NextResponse.json({ ok: true, id: res.insertId, slug });
 }

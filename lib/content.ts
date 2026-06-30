@@ -14,6 +14,10 @@ export type Project = {
   accent: string | null;
   initial: string | null;
   cover_image_id: number | null;
+  live_url: string | null;
+  client: string | null;
+  tags: string | null;
+  results: string | null;
   featured: number;
   status: string;
   sort_order: number;
@@ -32,6 +36,10 @@ function fallbackProjects(): Project[] {
     accent: p.accent,
     initial: p.initial,
     cover_image_id: null,
+    live_url: null,
+    client: null,
+    tags: null,
+    results: null,
     featured: 1,
     status: "published",
     sort_order: p.sort_order,

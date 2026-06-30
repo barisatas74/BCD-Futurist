@@ -152,7 +152,31 @@ async function createSchema(): Promise<void> {
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`);
 
+  // Sonradan eklenen proje alanları (mevcut tabloya güvenli ekleme)
+  await addColumnIfMissing("projects", "live_url", "VARCHAR(255) NULL");
+  await addColumnIfMissing("projects", "client", "VARCHAR(190) NULL");
+  await addColumnIfMissing("projects", "tags", "VARCHAR(500) NULL");
+  await addColumnIfMissing("projects", "results", "LONGTEXT NULL");
+
   await seedIfEmpty();
+}
+
+/** Kolon yoksa ekler (MySQL'de "ADD COLUMN IF NOT EXISTS" her sürümde yok). */
+async function addColumnIfMissing(
+  table: string,
+  column: string,
+  definition: string
+): Promise<void> {
+  const rows = await query<{ c: number }[]>(
+    `SELECT COUNT(*) AS c FROM information_schema.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?`,
+    [table, column]
+  );
+  if (rows[0].c === 0) {
+    await getPool().query(
+      `ALTER TABLE \`${table}\` ADD COLUMN \`${column}\` ${definition}`
+    );
+  }
 }
 
 async function seedIfEmpty(): Promise<void> {
