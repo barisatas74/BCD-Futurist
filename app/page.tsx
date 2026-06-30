@@ -1,5 +1,6 @@
 import SmoothScroll from "@/components/SmoothScroll";
 import StructuredData from "@/components/StructuredData";
+import HashScroller from "@/components/HashScroller";
 import Preloader from "@/components/Preloader";
 import CursorGlow from "@/components/CursorGlow";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -21,6 +22,7 @@ export default function Home() {
   return (
     <SmoothScroll>
       <StructuredData />
+      <HashScroller />
       <Preloader />
       <CursorGlow />
       <ScrollProgress />
