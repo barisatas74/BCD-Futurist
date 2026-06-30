@@ -48,6 +48,42 @@ export default function SmoothScroll({
     return () => document.removeEventListener("click", onClick);
   }, []);
 
+  // Sayfaya bir hash ile gelindiğinde (ör. /#iletisim) hedefe kaydır.
+  // Preloader/yerleşim oturana kadar birkaç kez dener; Lenis aktifse onun
+  // scrollTo'sunu kullanır (yoksa Lenis konumu geri çeker).
+  useEffect(() => {
+    let hash = "";
+    try {
+      hash = decodeURIComponent(window.location.hash);
+    } catch {
+      hash = window.location.hash;
+    }
+    if (!hash || hash.length < 2) return;
+
+    let tries = 0;
+    let timer = 0;
+    const tick = () => {
+      const el = document.querySelector<HTMLElement>(hash);
+      if (el) {
+        const lenis = lenisRef.current?.lenis;
+        if (lenis) {
+          lenis.scrollTo(el, { offset: -72, immediate: true });
+        } else {
+          const htmlEl = document.documentElement;
+          const prev = htmlEl.style.scrollBehavior;
+          htmlEl.style.scrollBehavior = "auto";
+          const top = el.getBoundingClientRect().top + window.scrollY - 72;
+          window.scrollTo(0, Math.max(0, top));
+          htmlEl.style.scrollBehavior = prev;
+        }
+      }
+      tries += 1;
+      if (tries < 14) timer = window.setTimeout(tick, 320);
+    };
+    timer = window.setTimeout(tick, 300);
+    return () => window.clearTimeout(timer);
+  }, [enableLenis]);
+
   if (!enableLenis) return <>{children}</>;
 
   return (
